@@ -1,0 +1,2 @@
+master-node1
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule

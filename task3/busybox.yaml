@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: busybox
+  name: busybox
+  namespace: azizbek
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: 
+    - 'sh'
+    - '-c'
+    - 'echo The BEST DevOps COURSE!!'
+  restartPolicy: Never

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-test
+  name: nginx-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-test
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx-test
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        command:
+        - 'sh'
+        - '-c'
+        - 'echo My name is $AUTHOR and this is my $EXAM_TYPE'
+        env:
+        - name: AUTHOR
+          valueFrom:
+            configMapKeyRef:
+              name: config-info
+              key: AUTHOR
+        - name: EXAM_TYPE
+          valueFrom:
+            configMapKeyRef:
+              name: config-info
+              key: EXAM_TYPE
+        resources: {}
+status: {}

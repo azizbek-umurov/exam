@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend-something-new
+  name: frontend-something-new
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-something-new
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: frontend-something-new
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: final
+                operator: In
+                values:
+                - exam
+      containers:
+      - image: nvrbckdown/something
+        name: something
+        livenessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        resources: {}
+status: {}

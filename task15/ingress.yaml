@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  creationTimestamp: "2024-02-12T16:06:27Z"
+  generation: 2
+  name: frontend-something
+  namespace: azizbek
+  resourceVersion: "5023231"
+  uid: fb44df5f-4a0c-45d5-a593-ef559a5207db
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: linuxuser.uz
+    http:
+      paths:
+      - backend:
+          service:
+            name: frontend-something
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - linuxuser.uz
+    secretName: k8s-tls
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.233.24.114

@@ -1,0 +1,1 @@
+{"domain":"linuxuser.uz","endpoint":"/check-ingress","full_path:":"linuxuser.uz/check-ingress"}
